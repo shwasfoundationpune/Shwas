@@ -1,0 +1,29 @@
+body.enquiry-open{overflow:hidden}
+.join-enquiry{margin-top:26px;background:var(--gold);color:var(--ink)}
+.join-enquiry:hover{background:#f5d58e}
+#enquiry-dialog{color:var(--ink);background:#fcfdf9;width:min(700px,calc(100% - 24px));max-height:calc(100dvh - 32px);padding:0;border:1px solid var(--rule);border-radius:12px;box-shadow:0 24px 100px #10291f40;overflow:auto}
+#enquiry-dialog::backdrop{background:#10291fbb;backdrop-filter:blur(3px)}
+.enquiry-panel{position:relative;padding:38px}
+.dialog-close{position:absolute;right:14px;top:12px;width:40px;height:40px;border:1px solid var(--rule);border-radius:50%;background:white;color:var(--ink);font-size:26px;cursor:pointer}
+.enquiry-panel .eyebrow{font-size:.68rem;margin:0 38px 16px 0}
+.enquiry-panel h2{font-size:clamp(2rem,5vw,2.7rem)}
+#enquiry-intro{margin:18px 0 24px;font-size:.9rem}
+#enquiry-fields{border:0;padding:0;margin:0;min-width:0}
+.enquiry-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.enquiry-grid label{display:block;min-width:0;font-size:.85rem;font-weight:600}
+.enquiry-grid input,.enquiry-grid select,.enquiry-grid textarea{display:block;width:100%;margin-top:6px;border:1px solid #aabcae;border-radius:5px;padding:11px 12px;font:400 16px/1.5 Arial,sans-serif;color:var(--ink);background:white}
+.enquiry-grid textarea{resize:vertical;min-height:110px}
+.enquiry-grid small{display:block;font-size:.72rem;font-weight:400;margin-top:5px;color:var(--text)}
+.full-width{grid-column:1/-1}
+.consent{display:flex;gap:10px;align-items:flex-start;margin:20px 0 12px;font-size:.85rem;cursor:pointer}
+.consent input{flex-shrink:0;width:18px;height:18px;margin:3px 0 0;accent-color:var(--ink)}
+.form-privacy{font-size:.75rem;line-height:1.6;overflow-wrap:anywhere}
+#enquiry-captcha{margin:20px 0;min-width:0}
+.enquiry-submit{border:0;cursor:pointer;width:100%;font-family:inherit}
+.enquiry-submit:disabled{opacity:.55;cursor:not-allowed}
+#enquiry-status:not(:empty){padding:12px 14px;margin-top:16px;background:#e9f0e5;border-radius:5px;font-size:.875rem}
+#enquiry-status.error{background:#fff0e8;color:#8a341b}
+.enquiry-alternative{margin-top:18px;font-size:.78rem;overflow-wrap:anywhere;text-align:center}
+.visually-hidden,.form-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#enquiry-dialog :focus-visible{outline:3px solid #b18220;outline-offset:3px}
+@media(max-width:520px){.enquiry-panel{padding:28px 18px}.enquiry-grid{grid-template-columns:1fr;gap:14px}}
