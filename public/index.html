@@ -36,7 +36,7 @@
     <button class="dialog-close" type="button" aria-label="Close enquiry form">×</button>
     <p class="eyebrow">GROW WITH OUR COMMUNITY</p>
     <h2 id="enquiry-title">A small step.<br><em>A shared purpose.</em></h2>
-    <p id="enquiry-intro">Tell us how you would like to get involved. All fields are required.</p>
+    <p id="enquiry-intro">Tell us how you would like to get involved. All fields except your message are required.</p>
     <form id="enquiry-form">
       <fieldset id="enquiry-fields">
         <legend class="visually-hidden">Your enquiry</legend>
@@ -45,7 +45,7 @@
           <label>Email address<input name="email" type="email" autocomplete="email" required maxlength="254"></label>
           <label>Mobile number<input name="mobile" type="tel" autocomplete="tel" inputmode="tel" required maxlength="24" aria-describedby="mobile-help"><small id="mobile-help">10-digit Indian mobile, or include your country code.</small></label>
           <label>Interested in<select name="interest" required><option value="">Choose an option</option><option>Volunteering</option><option>Membership</option><option>Partnership</option><option>General enquiry</option></select></label>
-          <label class="full-width">Your message<textarea name="message" required rows="4" maxlength="2000" placeholder="Tell us a little about how you would like to help."></textarea></label>
+          <label class="full-width">Your message (optional)<textarea name="message" rows="4" maxlength="2000" placeholder="Tell us a little about how you would like to help."></textarea></label>
         </div>
         <div class="form-trap" aria-hidden="true"><label>Leave this blank<input name="website" tabindex="-1" autocomplete="off"></label></div>
         <label class="consent"><input name="consent" type="checkbox" required><span>I agree to be contacted by Shwas Foundation regarding my enquiry.</span></label>
