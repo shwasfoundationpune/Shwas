@@ -11,11 +11,20 @@ const env = {
   TURNSTILE_SECRET_KEY: 'mock-secret', GOOGLE_SHEET_ID: 'mock-sheet',
   GOOGLE_SERVICE_ACCOUNT_JSON: JSON.stringify({ client_email: 'mock@example.com', private_key: privateKey.export({ type: 'pkcs8', format: 'pem' }) })
 };
-test('every field and consent are mandatory; mobile and interests validated', () => {
+test('contact fields and consent are mandatory; mobile and interests validated', () => {
   assert.ok(validate(data));
-  for (const key of ['name', 'email', 'mobile', 'interest', 'message', 'token', 'consent']) assert.equal(validate({ ...data, [key]: '' }), null, key);
-  for (const bad of [{ mobile: '123' }, { message: '  ' }, { consent: 'true' }, { email: 'invalid' }, { interest: 'Other' }, { website: 'spam' }, { message: 'x'.repeat(2001) }]) assert.equal(validate({ ...data, ...bad }), null);
+  for (const key of ['name', 'email', 'mobile', 'interest', 'token', 'consent']) assert.equal(validate({ ...data, [key]: '' }), null, key);
+  for (const bad of [{ mobile: '123' }, { message: 123 }, { consent: 'true' }, { email: 'invalid' }, { interest: 'Other' }, { website: 'spam' }, { message: 'x'.repeat(2001) }]) assert.equal(validate({ ...data, ...bad }), null);
   assert.equal(validate({ ...data, mobile: '+91 98765 43210' }).mobile, '+919876543210');
+});
+test('message is optional and normalizes to empty text', () => {
+  for (const message of ['', '  ', undefined, null]) assert.equal(validate({ ...data, message }).message, '');
+});
+test('enquiry without message saves an empty message cell', async t => {
+  const { send, calls } = await fixture(t);
+  const r = await send({ ...data, message: '' });
+  assert.equal(r.status, 201);
+  assert.equal(JSON.parse(calls[2].init.body).values[0][5], '');
 });
 async function fixture(t, options = {}) {
   const calls = [];
