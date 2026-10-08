@@ -1,6 +1,6 @@
 # Shwas Foundation enquiry form — activation guide
 
-The custom form is built. It opens from either Get involved button, matches the website, and requires name, email, mobile, interest, message and contact consent. Cloudflare Turnstile verifies visitors. Enquiries go to a private Google Sheet only after server verification. No submission data is saved in the website repository.
+The custom form is built. It opens from either Get involved button, matches the website, and requires name, email, mobile, interest and contact consent. The message is optional. Cloudflare Turnstile verifies visitors. Enquiries go to a private Google Sheet only after server verification. No submission data is saved in the website repository.
 
 The change is on a separate GitHub branch until the accounts below are configured. The existing live website remains available. There are no working keys in the code and no fake successful submissions. CAPTCHA reduces spam; it cannot guarantee that every enquiry is genuine.
 
