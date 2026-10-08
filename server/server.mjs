@@ -6,10 +6,13 @@ const interests = new Set(['Volunteering', 'Membership', 'Partnership', 'General
 export function validate(data) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
   const clean = {};
-  for (const [key, max] of Object.entries({ name: 100, email: 254, mobile: 24, interest: 40, message: 2000, token: 2048 })) {
+  for (const [key, max] of Object.entries({ name: 100, email: 254, mobile: 24, interest: 40, token: 2048 })) {
     if (typeof data[key] !== 'string' || !data[key].trim() || data[key].length > max) return null;
     clean[key] = data[key].trim();
   }
+  const message = data.message ?? '';
+  if (typeof message !== 'string' || message.length > 2000) return null;
+  clean.message = message.trim();
   clean.mobile = clean.mobile.replace(/[\s()-]/g, '');
   if (data.consent !== true || (data.website != null && data.website !== '') ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean.email) ||
@@ -72,7 +75,7 @@ export function createHandler(env, fetcher = fetch) {
       }
       data = validate(JSON.parse(Buffer.concat(chunks).toString('utf8')));
     } catch { return reply(400, { ok: false, message: 'Invalid submission.' }); }
-    if (!data) return reply(400, { ok: false, message: 'Please complete every field with valid details and agree to be contacted.' });
+    if (!data) return reply(400, { ok: false, message: 'Please complete all required fields with valid details and agree to be contacted.' });
     try {
       const check = await fetcher('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST', body: new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: data.token }),
