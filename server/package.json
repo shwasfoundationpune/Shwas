@@ -1,0 +1,7 @@
+{
+  "name": "shwas-enquiries",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22.x" },
+  "scripts": { "start": "node server.mjs", "test": "node --test" }
+}
