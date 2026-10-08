@@ -49,7 +49,7 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (busy || !configured || !token) return;
-    for (const name of ['name', 'message']) {
+    for (const name of ['name']) {
       if (!form.elements[name].value.trim()) form.elements[name].setCustomValidity('Please fill in this field.');
     }
     const mobile = form.elements.mobile.value.replace(/[\s()-]/g, '');
