@@ -2,7 +2,7 @@ import http from 'node:http';
 import { createPrivateKey, sign, randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
-const interests = new Set(['Volunteering', 'Membership', 'Partnership', 'General enquiry']);
+const interests = new Set(['Volunteering', 'Membership', 'Partnership', 'Donation', 'General enquiry']);
 export function validate(data) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
   const clean = {};

@@ -82,3 +82,12 @@ test('unconfigured service fails health check', async t => {
   const { url } = await fixture(t, { unconfigured: true });
   assert.equal((await fetch(url + '/health')).status, 503);
 });
+
+test('donation enquiry is accepted and saved with Donation interest', async t => {
+  const { send, calls } = await fixture(t);
+  const r = await send({ ...data, interest: 'Donation' });
+  assert.equal(r.status, 201);
+  assert.equal((await r.json()).ok, true);
+  assert.equal(calls.length, 3);
+  assert.equal(JSON.parse(calls[2].init.body).values[0][4], 'Donation');
+});
